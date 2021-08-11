@@ -9,6 +9,11 @@ jobs:
   lint-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout upstream
+        uses: actions/checkout@v2
+        with:
+          repository: harvester/charts
+          ref: upstream
       - name: Checkout
         uses: actions/checkout@v2
         with:

@@ -9,15 +9,13 @@ jobs:
   lint-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout upstream
-        uses: actions/checkout@v2
-        with:
-          repository: harvester/charts
-          ref: upstream
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+        run: |
+          git remote add upstream https://github.com/harvester/charts.git
+          git fetch upstream
 
       - name: Set up Helm
         uses: azure/setup-helm@v1

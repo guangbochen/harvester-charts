@@ -6,6 +6,7 @@ on:
       - master
   push:
     branches:
+      - master
       - release*
 
 jobs:
@@ -51,13 +52,13 @@ jobs:
         run: ct install --config tests/ct.yaml
 
       - name: Configure Git
-        if: github.ref == 'refs/heads/release*'
+        if: startsWith(github.ref, 'refs/heads/release')
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Run chart-releaser
-        if: github.ref == 'refs/heads/release*'
+        if: startsWith(github.ref, 'refs/heads/release')
         uses: helm/chart-releaser-action@v1.2.1
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

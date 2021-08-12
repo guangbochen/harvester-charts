@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "test.fullname" -}}
+{{- define "tests.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "test.chart" -}}
+{{- define "tests.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "test.labels" -}}
-helm.sh/chart: {{ include "test.chart" . }}
-{{ include "test.selectorLabels" . }}
+{{- define "tests.labels" -}}
+helm.sh/chart: {{ include "tests.chart" . }}
+{{ include "tests.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,7 +45,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "test.selectorLabels" -}}
+{{- define "tests.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "test.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -53,9 +53,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "test.serviceAccountName" -}}
+{{- define "tests.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "test.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "tests.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

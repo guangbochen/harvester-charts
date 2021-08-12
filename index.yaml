@@ -1,5 +1,18 @@
 apiVersion: v1
 entries:
+  demo:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-08-12T04:43:57.228186492Z"
+    description: A Helm chart for Kubernetes
+    digest: 049f680ce85c5f2004a43fac348a490622da76e7ecb4e78b8db207bd8d1ffdda
+    maintainers:
+    - name: harvester
+    name: demo
+    type: application
+    urls:
+    - https://github.com/guangbochen/harvester-charts/releases/download/demo-0.1.0/demo-0.1.0.tgz
+    version: 0.1.0
   tests:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -13,4 +26,4 @@ entries:
     urls:
     - https://github.com/guangbochen/harvester-charts/releases/download/tests-0.1.0/tests-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-12T02:36:09.687044772Z"
+generated: "2021-08-12T04:43:57.228481589Z"
